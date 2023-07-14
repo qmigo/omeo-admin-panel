@@ -1,0 +1,69 @@
+.app{
+  display: flex;
+
+}
+.Orders{
+  flex: 1;
+  height: 100vh;
+  overflow-y: scroll;
+  border-right: 1px solid black;
+}
+
+.Retailers{
+  flex: 2;
+  height: 100vh;
+  overflow-y: scroll;
+  border-right: 1px solid black;
+
+}
+.UpdateForm{
+  flex: 4;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.strip{
+  padding: 10px;
+  margin: 10px auto;
+  background-color: #99eca24f;
+  width: 80%;
+  font-weight: bold;
+  cursor: pointer;
+}
+.UpdateForm div{
+  padding: 10px;
+  margin: 2px;
+}
+.UpdateForm span{
+  padding: 5px;
+  margin: 3px;
+  width: fit-content;
+  background-color: #99eca24f;
+}
+button{
+  width: 40%;
+  margin: auto;
+}
+
+.Orders::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.Orders{
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.Retailers::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.Retailers{
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.strip-true{
+  background-color: #00890f4f;
+}
