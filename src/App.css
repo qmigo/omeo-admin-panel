@@ -67,3 +67,10 @@ button{
 .strip-true{
   background-color: #00890f4f;
 }
+
+@media only screen and (max-width: 600px) {
+  .app {
+    flex-direction: column;
+  }
+  
+}
