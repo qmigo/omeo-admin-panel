@@ -34,11 +34,11 @@ function App()
             orderSnapshot.forEach((order)=>{
                 const {orderId, userId, associatedOrderId, statusCode, timeStamp} = order.data();
                 const date = new Date(timeStamp);
-                const timeStampMs = timeStamp*1000;
                 const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
-
-                if(statusCode>=2 && statusCode<5 && timeStampMs>sevenDaysAgo)
-                orders.push({orderId, userId, associatedOrderId, statusCode, timeStamp, date})
+                if(statusCode>=2 && statusCode<5 && timeStamp>sevenDaysAgo)
+                {
+                    orders.push({orderId, userId, associatedOrderId, statusCode, timeStamp, date})
+                }
             })
         });
 
