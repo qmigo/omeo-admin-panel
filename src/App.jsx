@@ -37,7 +37,7 @@ function App()
                 const timeStampMs = timeStamp*1000;
                 const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
 
-                if(statusCode>=2 && statusCode<5 && timeStamp>sevenDaysAgo)
+                if(statusCode>=2 && statusCode<5 && timeStampMs>sevenDaysAgo)
                 orders.push({orderId, userId, associatedOrderId, statusCode, timeStamp, date})
             })
         });
