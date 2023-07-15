@@ -32,9 +32,13 @@ function App()
         userSnapshot.forEach(async (user) => {
             const orderSnapshot = await getDocs(collection(db, `Users/${user.id}/Orders`))
             orderSnapshot.forEach((order)=>{
-                const {orderId, userId, associatedOrderId, statusCode} = order.data();
-                if(statusCode>=2 && statusCode<5)
-                orders.push({orderId, userId, associatedOrderId, statusCode})
+                const {orderId, userId, associatedOrderId, statusCode, timeStamp} = order.data();
+                const date = new Date(timeStamp);
+                const timeStampMs = timeStamp*1000;
+                const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+
+                if(statusCode>=2 && statusCode<5 && timeStamp>sevenDaysAgo)
+                orders.push({orderId, userId, associatedOrderId, statusCode, timeStamp, date})
             })
         });
 
@@ -46,6 +50,10 @@ function App()
         })
 
         setTimeout(()=>{
+            orders.sort((a,b)=>{
+                if(a.timeStamp < b.timeStamp)return 1;
+                return -1;
+            })
             setAllOrders(orders)
             setAllRetailers(retailers)
         },1000)
@@ -134,7 +142,7 @@ function App()
             <hr />
         {   
             allOrders.length ? allOrders.map((order, index)=>(
-                <div className={`strip strip-${selectedOrder===index}`} onClick={()=>{updateOrderUser(order, index)}}>{order.associatedOrderId} <hr /> {order.orderId}</div>
+                <div className={`strip strip-${selectedOrder===index}`} onClick={()=>{updateOrderUser(order, index)}}>{order.associatedOrderId} <hr /> {order.orderId} <hr /> {order.date.toLocaleString()} </div>
             )):
             <h4 className='mx-2'>Loading ...</h4>
         }
